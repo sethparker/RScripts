@@ -4,10 +4,13 @@
 ################################
 library(ggplot2)
 ################################
-TROLL_output.fxn <- function(num_sp)
-{
+# Output
+  
+num_sp <-   # Enter the number of species modeled
+  
   # Select TROLL output.csv
   output <- read.csv(file.choose(), header = FALSE)
+  
   # dbh > 1cm per hectare
   ggplot(data = output) + 
     geom_line(mapping = aes(x = output[,1], y = output[,2+num_sp])) + 
@@ -42,16 +45,16 @@ TROLL_output.fxn <- function(num_sp)
   ggplot(data = output) + 
     geom_line(mapping = aes(x = output[,1], y = output[,8+num_sp*7]/1000)) + 
     theme_classic()+ xlab("month") + ylab("AGB [Mg/ha]")
-}
+
 ################################
 # Final Pattern
+  # Select TROLL final_pattern.csv
 final_pattern <- read.csv(file.choose(), header = FALSE)
 
 # species distribution
 ggplot(data = final_pattern) + 
   geom_bar(mapping = aes(x = final_pattern[,8])) +
   theme_classic()+ xlab("Species Distribution in Final Month")+ ylab("Number of stems")
-TROLL_output.fxn(2)
 
 # species vs leaf area
 ggplot(data = final_pattern) +
